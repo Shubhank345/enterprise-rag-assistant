@@ -1,11 +1,18 @@
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import OllamaEmbeddings
-
-from langchain_ollama import ChatOllama
-
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+
+import os
+
+# Load environment variables
+load_dotenv()
+
+# Get API Key
+groq_api_key = os.getenv("GROQ_API_KEY")
 
 
 # LOAD DOCUMENTS
@@ -15,12 +22,12 @@ def load_documents(files):
 
     for file_path in files:
 
-        # PDF FILES
+        # PDF Files
         if file_path.endswith(".pdf"):
 
             loader = PyPDFLoader(file_path)
 
-        # TEXT FILES
+        # TXT Files
         else:
 
             loader = TextLoader(
@@ -38,10 +45,10 @@ def load_documents(files):
 # BUILD QA CHAIN
 def build_qa_chain(files):
 
-    # Load documents
+    # Load Documents
     docs = load_documents(files)
 
-    # Text splitter
+    # Text Splitter
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200
@@ -49,12 +56,12 @@ def build_qa_chain(files):
 
     split_docs = splitter.split_documents(docs)
 
-    # Embeddings
-    embedding_model = OllamaEmbeddings(
-        model="mistral"
+    # Embedding Model
+    embedding_model = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    # Vector DB
+    # Vector Database
     vector_db = FAISS.from_documents(
         split_docs,
         embedding_model
@@ -65,9 +72,10 @@ def build_qa_chain(files):
         search_kwargs={"k": 5}
     )
 
-    # LLM
-    llm = ChatOllama(
-        model="mistral",
+    # Groq LLM
+    llm = ChatGroq(
+        groq_api_key=groq_api_key,
+        model_name="llama-3.1-8b-instant",
         temperature=0.2
     )
 
