@@ -52,7 +52,7 @@ LangChain RAG Pipeline
         ↓
 FAISS Vector Database
         ↓
-Ollama LLM
+GROQ LLM
 ```
 
 ---
@@ -98,25 +98,6 @@ pip install -r requirements.txt
 
 ---
 
-## Install Ollama
-
-Download Ollama:
-
-https://ollama.com/download
-
-Pull Llama 3 model:
-
-```bash
-ollama pull llama3
-```
-
-Run model:
-
-```bash
-ollama run llama3
-```
-
----
 
 ## Run Backend
 
