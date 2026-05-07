@@ -147,7 +147,7 @@ http://127.0.0.1:8000/docs
 4. FAISS vector database stores embeddings
 5. User asks questions
 6. Relevant chunks are retrieved
-7. Ollama LLM generates contextual answers
+7. GROQ LLM generates contextual answers
 
 ---
 
