@@ -188,6 +188,3 @@ AI Student | GenAI Developer | FastAPI & RAG Enthusiast
 
 ---
 
-## License
-
-This project is licensed under the MIT License.
