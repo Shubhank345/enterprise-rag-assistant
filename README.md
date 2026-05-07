@@ -1,6 +1,6 @@
 # Enterprise Multi-Document RAG Assistant
 
-An Enterprise-grade Multi-Document Retrieval-Augmented Generation (RAG) Assistant built using FastAPI, Streamlit, LangChain, FAISS, and Ollama.
+An Enterprise-grade Multi-Document Retrieval-Augmented Generation (RAG) Assistant built using FastAPI, Streamlit, LangChain, FAISS, and Groq.
 
 This application allows users to upload multiple PDF/TXT documents and ask questions using AI-powered semantic search and retrieval.
 
@@ -15,7 +15,7 @@ This application allows users to upload multiple PDF/TXT documents and ask quest
 - FastAPI backend
 - Streamlit frontend
 - FAISS vector database
-- Ollama local LLM integration
+- Groq LLM integration
 - Source document retrieval
 - Interactive chatbot interface
 
@@ -32,7 +32,7 @@ This application allows users to upload multiple PDF/TXT documents and ask quest
 
 ### AI / GenAI
 - LangChain
-- Ollama
+- Groq
 - FAISS
 - HuggingFace Embeddings
 
